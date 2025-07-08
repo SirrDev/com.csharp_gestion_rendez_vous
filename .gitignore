@@ -1,0 +1,21 @@
+# Fichiers et dossiers de build
+bin/
+obj/
+.vs/
+*.exe
+*.pdb
+*.cache
+*.resources
+*.dll
+
+# Fichiers temporaires et logs
+*.log
+*.tmp
+*.user
+*.suo
+*.bak
+*.ncb
+*.sdf
+
+# Migrations générées (optionnel)
+gestion_rendez_vous/Migrations/
