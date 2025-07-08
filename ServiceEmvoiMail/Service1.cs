@@ -72,8 +72,8 @@ namespace ServiceEmvoiMail
         private void EnvoyerEmail(string sujet, string contenu)
         {
             // ⚠️ Personnalise avec ton propre compte mail
-            string from = "falllama660@gmail.com";
-            string to = "lamafall308@icloud.com";
+            string from = "bagueye905@gmail.com";
+            string to = "keyena12@icloud.com";
             string smtp = "smtp.gmail.com";
             string mdp = "emup nvkr ytyz irzh"; 
 
