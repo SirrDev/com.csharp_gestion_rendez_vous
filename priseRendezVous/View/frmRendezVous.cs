@@ -19,6 +19,8 @@ namespace priseRendezVous.View
         private readonly string apiBaseUrl;
         private readonly string apiUrl;
         private List<RendezVous> rendezVousList = new List<RendezVous>(); // Pour la recherche
+        private List<RendezVous> rendezVousFiltre = new List<RendezVous>(); // Pour filtrer
+        private List<Medecin> medecinsFiltre = new List<Medecin>(); // Pour le filtre
 
 
         public frmRendezVous()
@@ -66,6 +68,13 @@ namespace priseRendezVous.View
                 await LoadMedecinsAsync();
                 await LoadSoinsAsync();
                 await LoadRendezVousAsync();
+                // Remplir la ComboBox de filtre médecin
+                medecinsFiltre = cbMedecin.DataSource as List<Medecin> ?? new List<Medecin>();
+                cbFiltreMedecin.Items.Clear();
+                cbFiltreMedecin.Items.Add("Tous les médecins");
+                foreach (var m in medecinsFiltre)
+                    cbFiltreMedecin.Items.Add(m.NomPrenom);
+                cbFiltreMedecin.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
@@ -123,7 +132,17 @@ namespace priseRendezVous.View
             var medecins = cbMedecin.DataSource as List<Medecin> ?? new List<Medecin>();
             var soins = cbSoin.DataSource as List<Soin> ?? new List<Soin>();
 
-            var data = rendezVousList.Select(r => new
+            // Appliquer le filtre médecin si sélectionné
+            int selectedMedecinIndex = cbFiltreMedecin.SelectedIndex;
+            IEnumerable<RendezVous> source = rendezVousList;
+            if (selectedMedecinIndex > 0 && selectedMedecinIndex <= medecins.Count)
+            {
+                int idMedecin = medecins[selectedMedecinIndex - 1].idU;
+                source = rendezVousList.Where(r => r.IdMedecin == idMedecin);
+            }
+            rendezVousFiltre = source.ToList();
+
+            var data = rendezVousFiltre.Select(r => new
             {
                 IdRv = r.IdRv,
                 Date = r.DateRv.ToString("dd/MM/yyyy HH:mm"),
@@ -303,6 +322,11 @@ namespace priseRendezVous.View
             dgRendezVous.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgRendezVous.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dgRendezVous.AutoResizeColumns();
+        }
+
+        private async void cbFiltreMedecin_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            await LoadRendezVousAsync();
         }
     }
 }

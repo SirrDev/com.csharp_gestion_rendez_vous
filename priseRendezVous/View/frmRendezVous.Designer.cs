@@ -45,6 +45,7 @@
             this.txtStatut = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtRecherche = new System.Windows.Forms.TextBox();
+            this.cbFiltreMedecin = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgRendezVous)).BeginInit();
             this.SuspendLayout();
             // 
@@ -161,7 +162,7 @@
             // 
             this.btnSupprimer.BackColor = System.Drawing.Color.IndianRed;
             this.btnSupprimer.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnSupprimer.Location = new System.Drawing.Point(500, 96);
+            this.btnSupprimer.Location = new System.Drawing.Point(257, 380);
             this.btnSupprimer.Name = "btnSupprimer";
             this.btnSupprimer.Size = new System.Drawing.Size(94, 27);
             this.btnSupprimer.TabIndex = 28;
@@ -172,7 +173,7 @@
             // 
             this.btnChoisir.BackColor = System.Drawing.Color.SlateGray;
             this.btnChoisir.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnChoisir.Location = new System.Drawing.Point(386, 96);
+            this.btnChoisir.Location = new System.Drawing.Point(141, 380);
             this.btnChoisir.Name = "btnChoisir";
             this.btnChoisir.Size = new System.Drawing.Size(94, 27);
             this.btnChoisir.TabIndex = 27;
@@ -213,6 +214,16 @@
             this.txtRecherche.LostFocus += new System.EventHandler(this.txtRecherche_LostFocus);
             this.txtRecherche.TextChanged += new System.EventHandler(this.txtRecherche_TextChanged);
             this.Controls.Add(this.txtRecherche);
+            // 
+            // cbFiltreMedecin
+            // 
+            this.cbFiltreMedecin.FormattingEnabled = true;
+            this.cbFiltreMedecin.Location = new System.Drawing.Point(386, 85);
+            this.cbFiltreMedecin.Size = new System.Drawing.Size(373, 21);
+            this.cbFiltreMedecin.Name = "cbFiltreMedecin";
+            this.cbFiltreMedecin.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFiltreMedecin.SelectedIndexChanged += new System.EventHandler(this.cbFiltreMedecin_SelectedIndexChanged);
+            this.Controls.Add(this.cbFiltreMedecin);
             // 
             // frmRendezVous
             // 
@@ -264,5 +275,6 @@
         private System.Windows.Forms.TextBox txtStatut;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtRecherche;
+        private System.Windows.Forms.ComboBox cbFiltreMedecin;
     }
 }
