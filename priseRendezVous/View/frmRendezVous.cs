@@ -230,6 +230,24 @@ namespace priseRendezVous.View
             }
         }
 
+        private void txtStatut_GotFocus(object sender, EventArgs e)
+        {
+            if (txtStatut.Text == txtStatut.Tag.ToString())
+            {
+                txtStatut.Text = "";
+                txtStatut.ForeColor = System.Drawing.Color.Black;
+            }
+        }
+
+        private void txtStatut_LostFocus(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtStatut.Text))
+            {
+                txtStatut.Text = txtStatut.Tag.ToString();
+                txtStatut.ForeColor = System.Drawing.Color.Gray;
+            }
+        }
+
         private void txtRecherche_TextChanged(object sender, EventArgs e)
         {
             if (txtRecherche.Text == txtRecherche.Tag.ToString()) return;

@@ -186,6 +186,11 @@
             this.txtStatut.Name = "txtStatut";
             this.txtStatut.Size = new System.Drawing.Size(210, 20);
             this.txtStatut.TabIndex = 29;
+            this.txtStatut.Tag = "Statut du rendez-vous";
+            this.txtStatut.Text = "Statut du rendez-vous";
+            this.txtStatut.ForeColor = System.Drawing.Color.Gray;
+            this.txtStatut.GotFocus += new System.EventHandler(this.txtStatut_GotFocus);
+            this.txtStatut.LostFocus += new System.EventHandler(this.txtStatut_LostFocus);
             // 
             // label6
             // 
