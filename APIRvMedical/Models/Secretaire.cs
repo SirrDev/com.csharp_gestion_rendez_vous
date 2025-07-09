@@ -7,9 +7,12 @@ using System.Threading.Tasks;
 
 namespace APIRvMedical.Models
 {
-    public class Secretaire:Utilisateur
+    public class Secretaire: Personne
     {
-        [MaxLength(15)]
-        public String TelephoneFixe {  get; set; }
+
+        [MaxLength(20)]
+        public string TelephoneFixe { get; set; }
+
+
     }
 }

@@ -5,33 +5,43 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using gestion_rendez_vous.model;
 
-namespace  MetierRvMedical.model
-
+namespace MetierRvMedical.Model
 {
-   public class Agenda
+    public class Agenda
     {
+
         [Key]
         public int IdAgenda {  get; set; }
-        public DateTime? DatePlanifie { get; set; }
+        
+        public DateTime DatePlanifie { get; set; }
 
+        [MaxLength(200)]
         public string Titre { get; set; }
 
-        public string  HeureDebut { get; set; }
-        public string HeureFin { get; set; }
+        [MaxLength(200)]
+        public string DateDebut { get; set; }
 
-        public int Creneau { get; set; }
+        [MaxLength(200)]
+        public string DateFin { get; set; }
+
+        [MaxLength(10)]
+        public string Creneau { get; set; }
+
+        [MaxLength(200)]
         public string Lieu { get; set; }
-        public string Statut { get;set; }
 
-        public int IdMedecin { get; set; }
+        [MaxLength(10)]
+        public string Statut { get; set; }
+
+        public int? IdMedecin { get; set; }
         [ForeignKey("IdMedecin")]
         public Medecin Medecin { get; set; }
 
-       
-        public virtual ICollection < RendezVous>  rendezVous { get; set; }
+        public virtual ICollection<RendezVous> RendezVous { get; set; }
 
 
     }
+
+
 }

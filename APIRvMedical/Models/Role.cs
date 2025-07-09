@@ -7,13 +7,16 @@ using System.Threading.Tasks;
 
 namespace APIRvMedical.Models
 {
-    public class Role
-    {
+    public class Role {
+
         [Key]
         public int Id { get; set; }
-        [MaxLength(10)]
+
+        [MaxLength(100)]
         public string code { get; set; }
-        [MaxLength(30)]
+
+        [MaxLength(200)]
         public string libelle { get; set; }
+    
     }
 }

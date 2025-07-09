@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MetierRvMedical.model
+namespace MetierRvMedical.Model
 {
-    public class Admin:Utilisateur
+    public class Admin : Utilisateur
     {
     }
 }

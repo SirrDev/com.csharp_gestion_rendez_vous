@@ -5,7 +5,7 @@
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<MetierRvMedical.model.bdRvMedicalContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<MetierRvMedical.Model.BdRvMedicalContext>
     {
         public Configuration()
         {
@@ -13,7 +13,7 @@
             AutomaticMigrationDataLossAllowed = false;
         }
 
-        protected override void Seed(MetierRvMedical.model.bdRvMedicalContext context)
+        protected override void Seed(MetierRvMedical.Model.BdRvMedicalContext context)
         {
             //  This method will be called after migrating to the latest version.
 

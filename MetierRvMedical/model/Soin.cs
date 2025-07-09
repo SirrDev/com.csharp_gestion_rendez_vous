@@ -5,18 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MetierRvMedical.model
+namespace MetierRvMedical.Model
 {
     public class Soin
-
-
     {
+
         [Key]
-        public int IdSoin {  get; set; }
-        public String nomSoin { get; set; }
-        public String Libelle { get; set; }
-        public String Cout { get; set; }
+        public int IdSoin { get; set; }
 
+        [MaxLength(200)]
+        public string libelle { get; set; }
 
+        public float cout { get; set; }
     }
 }

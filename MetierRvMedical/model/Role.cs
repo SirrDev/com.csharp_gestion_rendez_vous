@@ -1,21 +1,22 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace MetierRvMedical.model
+namespace MetierRvMedical.Model
 {
-    [DataContract]
-    public class Role
-    {
+    public class Role {
+
         [Key]
-        [DataMember]
         public int Id { get; set; }
 
-        [MaxLength(10)]
-        [DataMember]
+        [MaxLength(100)]
         public string code { get; set; }
 
-        [MaxLength(30)]
-        [DataMember]
+        [MaxLength(200)]
         public string libelle { get; set; }
+    
     }
 }

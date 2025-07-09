@@ -1,21 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
 
 namespace APIRvMedical.Models
 {
-    public  class patient:personne
+    public class Patient : Personne
     {
-        [Required ,MaxLength(3)]
-        public string  GroupeSanguin {  get; set; }
+
+        [Required, MaxLength(3)]
+        public string GroupeSanguin { get; set; }
+
         [Required]
         public float? Poids { get; set; }
-        [Required]
-        public float? Taille { get; set; }
-        [Required]
-      public DateTime? DateNaissance { get;set; }
+
+        public virtual ICollection<Soin> Soins { get; set; }
+
+        public virtual ICollection<RendezVous> RendezVous { get; set; }
+
     }
 }

@@ -5,7 +5,6 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
-using MetierRvMedical.model;
 
 namespace MetierRvMedical
 {
@@ -19,33 +18,7 @@ namespace MetierRvMedical
 
         [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);
-        [OperationContract]
-        bool AddAgenda(Agenda agenda);
-        [OperationContract]
-        bool UpdateAgenda(Agenda agenda);
-        [OperationContract]
-        List<Agenda> GetListeAgenda();
-        [OperationContract]
-        Medecin GetMedecinbyId(int id);
-        // === Patient ===
-        [OperationContract]
-        List<patient> GetPatients();
 
-        [OperationContract]
-        bool AddPatient(patient p);
-
-        [OperationContract]
-        bool UpdatePatient(patient p);
-
-        [OperationContract]
-        bool DeletePatient(int id);
-
-        [OperationContract]
-        patient GetPatientById(int id);
-        [OperationContract]
-        Utilisateur Connexion(string identifiant, string motDePasseHash);
-
-        // TODO: ajoutez vos opérations de service ici
     }
 
 

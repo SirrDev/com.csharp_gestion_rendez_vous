@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace APIRvMedical.Models
 {
-    public class Admin:Utilisateur
+    public class Admin : Utilisateur
     {
     }
 }

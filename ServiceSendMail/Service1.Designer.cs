@@ -1,6 +1,6 @@
-﻿namespace ServiceSendMail
+namespace ServiceSendMail
 {
-    partial class Service1
+    partial class ServiceL3GLGroupes2
     {
         /// <summary> 
         /// Variable nécessaire au concepteur.
@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            this.ServiceName = "Service1";
+            // 
+            // ServiceL3GLGroupes2
+            // 
+            this.ServiceName = "ServiceL3GLGroupes2";
+
         }
 
         #endregion

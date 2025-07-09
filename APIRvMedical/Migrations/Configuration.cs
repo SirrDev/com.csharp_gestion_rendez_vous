@@ -1,23 +1,22 @@
 ﻿namespace APIRvMedical.Migrations
 {
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
+    using APIRvMedical.Models;
+    using MySql.Data.EntityFramework;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<APIRvMedical.Models.bdRvMedicalContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<APIRvMedicalContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
+
+            SetSqlGenerator("MySql.Data.MySqlClient", new MySqlMigrationSqlGenerator());
         }
 
-        protected override void Seed(APIRvMedical.Models.bdRvMedicalContext context)
+        protected override void Seed(APIRvMedicalContext context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method
-            //  to avoid creating duplicate seed data.
+            // Seed data si nécessaire
         }
     }
 }

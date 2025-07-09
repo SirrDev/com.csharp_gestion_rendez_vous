@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceProcess;
@@ -17,7 +17,7 @@ namespace ServiceSendMail
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[]
             {
-                new Service1()
+                new ServiceL3GLGroupes2()
             };
             ServiceBase.Run(ServicesToRun);
         }

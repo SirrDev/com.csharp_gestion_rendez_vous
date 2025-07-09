@@ -1,3 +1,4 @@
+
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -7,7 +8,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{6D96B185-2089-4571-BEE1-FE6B32D0B99E}</ProjectGuid>
+    <ProjectGuid>{DC115046-ED10-4D67-A4A7-999AFAC4EA2F}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -183,21 +184,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="model\Admin.cs" />
-    <Compile Include="model\Agenda.cs" />
-    <Compile Include="model\bdRvMedicalContext.cs" />
-    <Compile Include="model\groupesanguin.cs" />
-    <Compile Include="model\Medecin.cs" />
-    <Compile Include="model\MoyenPaiement.cs" />
-    <Compile Include="model\patient.cs" />
-    <Compile Include="model\personne.cs" />
-    <Compile Include="model\RendezVous.cs" />
-    <Compile Include="model\Role.cs" />
-    <Compile Include="model\Secretaire.cs" />
-    <Compile Include="model\Soin.cs" />
-    <Compile Include="model\specialite.cs" />
-    <Compile Include="model\Td_Erreur.cs" />
-    <Compile Include="model\Utilisateur.cs" />
+    <Compile Include="Model\Admin.cs" />
+    <Compile Include="Model\Agenda.cs" />
+    <Compile Include="Model\BdRvMedicalContext.cs" />
+    <Compile Include="Model\Medecin.cs" />
+    <Compile Include="Model\MoyenPaiement.cs" />
+    <Compile Include="Model\Patient.cs" />
+    <Compile Include="Model\Personne.cs" />
+    <Compile Include="Model\RendezVous.cs" />
+    <Compile Include="Model\Role.cs" />
+    <Compile Include="Model\Secretaire.cs" />
+    <Compile Include="Model\Soin.cs" />
+    <Compile Include="Model\Utilisateur.cs" />
     <Compile Include="Service1.svc.cs">
       <DependentUpon>Service1.svc</DependentUpon>
     </Compile>
@@ -206,6 +204,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -215,6 +214,9 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -229,9 +231,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>50788</DevelopmentServerPort>
+          <DevelopmentServerPort>56068</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:50788/</IISUrl>
+          <IISUrl>http://localhost:56068/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

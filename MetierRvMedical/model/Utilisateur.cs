@@ -1,30 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.Serialization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-
-
-namespace MetierRvMedical.model
+namespace MetierRvMedical.Model
 {
-    [DataContract]
-    public class Utilisateur : personne
+    public class Utilisateur:Personne
     {
-        [DataMember]
         [MaxLength(20)]
         public string Identifiant { get; set; }
 
-        [DataMember]
-        [MaxLength(250)]
-        public string Motdepasse { get; set; }
+        [MaxLength(100)]
+        public string MotDePasse { get; set; }
 
-        [DataMember]
-        public bool status { get; set; }
+        public bool Statut { get; set; }
 
-        [DataMember]
-        public int IdRole { get; set; }
-
-        [DataMember]
-        public Role Role { get; set; } // ⚠️ Assure-toi aussi que `Role` est bien décoré avec [DataContract]
     }
 }

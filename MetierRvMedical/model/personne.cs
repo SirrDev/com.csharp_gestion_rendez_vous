@@ -1,30 +1,32 @@
 ﻿using System;
-using System.Runtime.Serialization; // <--- important
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace MetierRvMedical
+namespace MetierRvMedical.Model
 {
-    [DataContract]  // Ajouté ici
-    public class personne
+    public class Personne
     {
         [Key]
-        [DataMember]  // Ajouté ici
-        public int IdU { get; set; }
-
-        [Required, MaxLength(160)]
-        [DataMember]
-        public string NomPrenom { get; set; }
+        public int idU { get; set; }
 
         [Required, MaxLength(200)]
-        [DataMember]
-        public string Adresse { get; set; }
+        public string NomPrenom { get; set; }
 
-        [Required, MaxLength(80), DataType(DataType.EmailAddress)]
-        [DataMember]
+        [Required, MaxLength(50)]
+        public string Tel { get; set; }
+
+        [Required, MaxLength(100), DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        [Required, MaxLength(20)]
-        [DataMember]
-        public string Tel { get; set; }
+        [Required, MaxLength(200)]
+        public string Adresse { get; set; }
+
+        
+        
     }
+
+
 }
