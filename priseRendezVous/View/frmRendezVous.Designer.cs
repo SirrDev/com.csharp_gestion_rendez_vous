@@ -44,6 +44,7 @@
             this.btnChoisir = new System.Windows.Forms.Button();
             this.txtStatut = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.txtRecherche = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgRendezVous)).BeginInit();
             this.SuspendLayout();
             // 
@@ -195,6 +196,19 @@
             this.label6.TabIndex = 30;
             this.label6.Text = "Statut";
             // 
+            // txtRecherche
+            // 
+            this.txtRecherche.Location = new System.Drawing.Point(386, 110);
+            this.txtRecherche.Size = new System.Drawing.Size(373, 20);
+            this.txtRecherche.Name = "txtRecherche";
+            this.txtRecherche.Tag = "Rechercher un rendez-vous...";
+            this.txtRecherche.Text = "Rechercher un rendez-vous...";
+            this.txtRecherche.ForeColor = System.Drawing.Color.Gray;
+            this.txtRecherche.GotFocus += new System.EventHandler(this.txtRecherche_GotFocus);
+            this.txtRecherche.LostFocus += new System.EventHandler(this.txtRecherche_LostFocus);
+            this.txtRecherche.TextChanged += new System.EventHandler(this.txtRecherche_TextChanged);
+            this.Controls.Add(this.txtRecherche);
+            // 
             // frmRendezVous
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -244,5 +258,6 @@
         private System.Windows.Forms.Button btnChoisir;
         private System.Windows.Forms.TextBox txtStatut;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtRecherche;
     }
 }

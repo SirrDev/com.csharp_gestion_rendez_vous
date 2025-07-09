@@ -9,6 +9,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace priseRendezVous.View
 {
@@ -17,6 +18,7 @@ namespace priseRendezVous.View
         private readonly HttpClient _httpClient;
         private readonly string apiBaseUrl;
         private readonly string apiUrl;
+        private List<RendezVous> rendezVousList = new List<RendezVous>(); // Pour la recherche
 
 
         public frmRendezVous()
@@ -29,6 +31,31 @@ namespace priseRendezVous.View
             _httpClient.DefaultRequestHeaders.Accept.Clear();
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             Load += frmRendezVous_Load;
+
+            // Modernisation DataGridView
+            dgRendezVous.EnableHeadersVisualStyles = false;
+            dgRendezVous.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.SteelBlue;
+            dgRendezVous.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.White;
+            dgRendezVous.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.AliceBlue;
+            dgRendezVous.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgRendezVous.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgRendezVous.ReadOnly = true;
+            dgRendezVous.SelectionChanged += dgRendezVous_SelectionChanged;
+
+            // Modernisation boutons
+            btnAjouter.BackColor = System.Drawing.Color.SeaGreen;
+            btnAjouter.ForeColor = System.Drawing.Color.White;
+            bntModifier.BackColor = System.Drawing.Color.DodgerBlue;
+            bntModifier.ForeColor = System.Drawing.Color.White;
+            btnSupprimer.BackColor = System.Drawing.Color.IndianRed;
+            btnSupprimer.ForeColor = System.Drawing.Color.White;
+            btnChoisir.BackColor = System.Drawing.Color.Gray;
+            btnChoisir.ForeColor = System.Drawing.Color.White;
+
+            // Désactiver les boutons au départ
+            bntModifier.Enabled = false;
+            btnSupprimer.Enabled = false;
+            btnChoisir.Enabled = false;
         }
 
         private async void frmRendezVous_Load(object sender, EventArgs e)
@@ -84,8 +111,8 @@ namespace priseRendezVous.View
             var response = await _httpClient.GetAsync($"{apiUrl}");
             response.EnsureSuccessStatusCode();
             var json = await response.Content.ReadAsStringAsync();
-            var rdvs = JsonConvert.DeserializeObject<List<RendezVous>>(json);
-            dgRendezVous.DataSource = rdvs;
+            rendezVousList = JsonConvert.DeserializeObject<List<RendezVous>>(json);
+            dgRendezVous.DataSource = rendezVousList;
         }
 
         private async void btnAjouter_Click(object sender, EventArgs e)
@@ -175,6 +202,40 @@ namespace priseRendezVous.View
                 IdMedecin = (int)cbMedecin.SelectedValue,
                 IdSoin = (int)cbSoin.SelectedValue
             };
+        }
+
+        private void dgRendezVous_SelectionChanged(object sender, EventArgs e)
+        {
+            bool hasSelection = dgRendezVous.CurrentRow != null;
+            bntModifier.Enabled = hasSelection;
+            btnSupprimer.Enabled = hasSelection;
+            btnChoisir.Enabled = hasSelection;
+        }
+
+        private void txtRecherche_GotFocus(object sender, EventArgs e)
+        {
+            if (txtRecherche.Text == txtRecherche.Tag.ToString())
+            {
+                txtRecherche.Text = "";
+                txtRecherche.ForeColor = System.Drawing.Color.Black;
+            }
+        }
+
+        private void txtRecherche_LostFocus(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtRecherche.Text))
+            {
+                txtRecherche.Text = txtRecherche.Tag.ToString();
+                txtRecherche.ForeColor = System.Drawing.Color.Gray;
+            }
+        }
+
+        private void txtRecherche_TextChanged(object sender, EventArgs e)
+        {
+            if (txtRecherche.Text == txtRecherche.Tag.ToString()) return;
+            string filtre = txtRecherche.Text.ToLower();
+            var rdvFiltres = rendezVousList.Where(r => r.Statut.ToLower().Contains(filtre) || r.DateRv.ToString().ToLower().Contains(filtre)).ToList();
+            dgRendezVous.DataSource = rdvFiltres;
         }
     }
 }
