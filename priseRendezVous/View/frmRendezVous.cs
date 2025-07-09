@@ -112,7 +112,32 @@ namespace priseRendezVous.View
             response.EnsureSuccessStatusCode();
             var json = await response.Content.ReadAsStringAsync();
             rendezVousList = JsonConvert.DeserializeObject<List<RendezVous>>(json);
-            dgRendezVous.DataSource = rendezVousList;
+
+            // S'assurer que la liste des patients est bien chargée
+            var patients = cbPatient.DataSource as List<Patient>;
+            if (patients == null || patients.Count == 0)
+            {
+                await LoadPatientsAsync();
+                patients = cbPatient.DataSource as List<Patient> ?? new List<Patient>();
+            }
+            var medecins = cbMedecin.DataSource as List<Medecin> ?? new List<Medecin>();
+            var soins = cbSoin.DataSource as List<Soin> ?? new List<Soin>();
+
+            var data = rendezVousList.Select(r => new
+            {
+                IdRv = r.IdRv,
+                Date = r.DateRv.ToString("dd/MM/yyyy HH:mm"),
+                Statut = string.IsNullOrWhiteSpace(r.Statut) ? "Non renseigné" : r.Statut,
+                Patient = (r.IdPatient != null) ? patients.FirstOrDefault(p => p.idU == r.IdPatient)?.NomPrenom ?? "" : "",
+                Medecin = (r.IdMedecin != null) ? medecins.FirstOrDefault(m => m.idU == r.IdMedecin)?.NomPrenom ?? "" : "",
+                Soin = (r.IdSoin != null) ? soins.FirstOrDefault(s => s.IdSoin == r.IdSoin)?.libelle ?? "" : ""
+            }).ToList();
+
+            dgRendezVous.DataSource = data;
+            PersonnaliserColonnes();
+            // Agrandir le DataGridView
+            dgRendezVous.Width = 600;
+            dgRendezVous.Height = 350;
         }
 
         private async void btnAjouter_Click(object sender, EventArgs e)
@@ -177,12 +202,16 @@ namespace priseRendezVous.View
         {
             if (dgRendezVous.CurrentRow != null)
             {
-                var selected = (RendezVous)dgRendezVous.CurrentRow.DataBoundItem;
-                dtpDateRv.Value = selected.DateRv;
-                txtStatut.Text = selected.Statut;
-                cbPatient.SelectedValue = selected.IdPatient;
-                cbMedecin.SelectedValue = selected.IdMedecin;
-                cbSoin.SelectedValue = selected.IdSoin;
+                int idRv = (int)dgRendezVous.CurrentRow.Cells["IdRv"].Value;
+                var selected = rendezVousList.FirstOrDefault(r => r.IdRv == idRv);
+                if (selected != null)
+                {
+                    dtpDateRv.Value = selected.DateRv;
+                    txtStatut.Text = selected.Statut;
+                    cbPatient.SelectedValue = selected.IdPatient;
+                    cbMedecin.SelectedValue = selected.IdMedecin;
+                    cbSoin.SelectedValue = selected.IdSoin;
+                }
             }
         }
 
@@ -254,6 +283,26 @@ namespace priseRendezVous.View
             string filtre = txtRecherche.Text.ToLower();
             var rdvFiltres = rendezVousList.Where(r => r.Statut.ToLower().Contains(filtre) || r.DateRv.ToString().ToLower().Contains(filtre)).ToList();
             dgRendezVous.DataSource = rdvFiltres;
+        }
+
+        private void PersonnaliserColonnes()
+        {
+            if (dgRendezVous.Columns.Contains("IdRv"))
+                dgRendezVous.Columns["IdRv"].Visible = false;
+            if (dgRendezVous.Columns.Contains("Date"))
+                dgRendezVous.Columns["Date"].HeaderText = "Date";
+            if (dgRendezVous.Columns.Contains("Statut"))
+                dgRendezVous.Columns["Statut"].HeaderText = "Statut";
+            if (dgRendezVous.Columns.Contains("Patient"))
+                dgRendezVous.Columns["Patient"].HeaderText = "Patient";
+            if (dgRendezVous.Columns.Contains("Medecin"))
+                dgRendezVous.Columns["Medecin"].HeaderText = "Médecin";
+            if (dgRendezVous.Columns.Contains("Soin"))
+                dgRendezVous.Columns["Soin"].HeaderText = "Soin";
+
+            dgRendezVous.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgRendezVous.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dgRendezVous.AutoResizeColumns();
         }
     }
 }

@@ -78,14 +78,22 @@ namespace priseRendezVous.View
             LoadPatients();
         }
 
-        private System.Drawing.Image LoadImageFromUrl(string url)
+        private Image LoadImageFromUrl(string url)
         {
-            using (var wc = new WebClient())
+            try
             {
-                using (var s = new System.IO.MemoryStream(wc.DownloadData(url)))
+                using (WebClient wc = new WebClient())
                 {
-                    return System.Drawing.Image.FromStream(s);
+                    using (var stream = new System.IO.MemoryStream(wc.DownloadData(url)))
+                    {
+                        return Image.FromStream(stream);
+                    }
                 }
+            }
+            catch
+            {
+                // Retourne null si l'image ne peut pas être chargée (pas d'Internet, etc.)
+                return null;
             }
         }
 

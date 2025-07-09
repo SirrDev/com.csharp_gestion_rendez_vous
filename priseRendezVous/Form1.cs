@@ -125,9 +125,12 @@ namespace priseRendezVous
             string urlUserPng = "https://img.icons8.com/ios-filled/50/000000/user.png";
             string urlLockPng = "https://img.icons8.com/ios-filled/50/000000/lock-2.png";
 
-            picUser.Image = LoadImageFromUrl(urlUserPng);
-            picPwd.Image = LoadImageFromUrl(urlLockPng);
-            picIcon.Image = LoadImageFromUrl(urlLockPng);
+            var imgUser = LoadImageFromUrl(urlUserPng);
+            if (imgUser != null) picUser.Image = imgUser;
+            var imgPwd = LoadImageFromUrl(urlLockPng);
+            if (imgPwd != null) picPwd.Image = imgPwd;
+            var imgIcon = LoadImageFromUrl(urlLockPng);
+            if (imgIcon != null) picIcon.Image = imgIcon;
         }
 
         private Image LoadImageFromUrl(string url)
