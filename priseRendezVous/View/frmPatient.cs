@@ -9,6 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Net;
 using System.Drawing;
+using System.Linq; // Added for .Where() and .ToList()
 
 namespace priseRendezVous.View
 {
@@ -17,6 +18,7 @@ namespace priseRendezVous.View
         private readonly HttpClient client = new HttpClient();
         private readonly string apiBaseUrl;
         private readonly string baseUrl;
+        private List<Patient> patients = new List<Patient>(); // Pour la recherche
 
         public frmPatient()
         {
@@ -32,6 +34,34 @@ namespace priseRendezVous.View
             this.Load += new EventHandler(frmPatient_Load);
             // Démarrer le timer pour l'actualisation automatique
             this.Load += (s, e) => { refreshTimer.Start(); };
+
+            // Modernisation DataGridView
+            dgPatient.EnableHeadersVisualStyles = false;
+            dgPatient.ColumnHeadersDefaultCellStyle.BackColor = Color.SteelBlue;
+            dgPatient.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgPatient.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue;
+            dgPatient.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgPatient.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgPatient.ReadOnly = true;
+            dgPatient.SelectionChanged += dgPatient_SelectionChanged;
+
+            // Modernisation boutons
+            btnAjouter.BackColor = Color.SeaGreen;
+            btnAjouter.ForeColor = Color.White;
+            bntModifier.BackColor = Color.DodgerBlue;
+            bntModifier.ForeColor = Color.White;
+            btnSupprimer.BackColor = Color.IndianRed;
+            btnSupprimer.ForeColor = Color.White;
+            btnChoisir.BackColor = Color.Gray;
+            btnChoisir.ForeColor = Color.White;
+
+            // Désactiver les boutons au départ
+            bntModifier.Enabled = false;
+            btnSupprimer.Enabled = false;
+            btnChoisir.Enabled = false;
+
+            // Préparer la barre de recherche (champ à ajouter dans le Designer)
+            // txtRecherche.TextChanged += txtRecherche_TextChanged;
         }
 
         private async void refreshTimer_Tick(object sender, EventArgs e)
@@ -59,13 +89,14 @@ namespace priseRendezVous.View
             }
         }
 
+        // Charger la liste complète pour la recherche
         private async System.Threading.Tasks.Task LoadPatients()
         {
             var response = await client.GetAsync(baseUrl);
             if (response.IsSuccessStatusCode)
             {
                 var jsonData = await response.Content.ReadAsStringAsync();
-                var patients = JsonConvert.DeserializeObject<List<Patient>>(jsonData);
+                patients = JsonConvert.DeserializeObject<List<Patient>>(jsonData);
                 dgPatient.DataSource = patients;
             }
             else
@@ -221,6 +252,42 @@ namespace priseRendezVous.View
             labelErreur.Text = message;
             labelErreur.ForeColor = System.Drawing.Color.Green;
             labelErreur.Visible = true;
+        }
+
+        // Désactiver/activer les boutons selon la sélection
+        private void dgPatient_SelectionChanged(object sender, EventArgs e)
+        {
+            bool hasSelection = dgPatient.CurrentRow != null;
+            bntModifier.Enabled = hasSelection;
+            btnSupprimer.Enabled = hasSelection;
+            btnChoisir.Enabled = hasSelection;
+        }
+
+        // Barre de recherche (à activer si champ ajouté dans le Designer)
+        private void txtRecherche_GotFocus(object sender, EventArgs e)
+        {
+            if (txtRecherche.Text == txtRecherche.Tag.ToString())
+            {
+                txtRecherche.Text = "";
+                txtRecherche.ForeColor = Color.Black;
+            }
+        }
+
+        private void txtRecherche_LostFocus(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtRecherche.Text))
+            {
+                txtRecherche.Text = txtRecherche.Tag.ToString();
+                txtRecherche.ForeColor = Color.Gray;
+            }
+        }
+
+        private void txtRecherche_TextChanged(object sender, EventArgs e)
+        {
+            if (txtRecherche.Text == txtRecherche.Tag.ToString()) return;
+            string filtre = txtRecherche.Text.ToLower();
+            var patientsFiltres = patients.Where(p => p.NomPrenom.ToLower().Contains(filtre) || p.Email.ToLower().Contains(filtre)).ToList();
+            dgPatient.DataSource = patientsFiltres;
         }
     }
 }

@@ -49,6 +49,7 @@
             this.picPatient = new System.Windows.Forms.PictureBox();
             this.labelErreur = new System.Windows.Forms.Label();
             this.refreshTimer = new System.Windows.Forms.Timer();
+            this.txtRecherche = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgPatient)).BeginInit();
             this.panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picPatient)).BeginInit();
@@ -238,6 +239,7 @@
             this.panelMain.Controls.Add(this.btnChoisir);
             this.panelMain.Controls.Add(this.labelErreur);
             this.panelMain.Controls.Add(this.dgPatient);
+            this.panelMain.Controls.Add(this.txtRecherche);
             // 
             // picPatient
             // 
@@ -258,6 +260,18 @@
             this.refreshTimer.Interval = 10000; // 10 secondes
             this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
             // 
+            // txtRecherche
+            // 
+            this.txtRecherche.Location = new System.Drawing.Point(350, 5); // Juste au-dessus du DataGridView
+            this.txtRecherche.Size = new System.Drawing.Size(570, 20);
+            this.txtRecherche.Name = "txtRecherche";
+            this.txtRecherche.Tag = "Rechercher un patient...";
+            this.txtRecherche.Text = "Rechercher un patient...";
+            this.txtRecherche.ForeColor = System.Drawing.Color.Gray;
+            this.txtRecherche.GotFocus += new System.EventHandler(this.txtRecherche_GotFocus);
+            this.txtRecherche.LostFocus += new System.EventHandler(this.txtRecherche_LostFocus);
+            this.txtRecherche.TextChanged += new System.EventHandler(this.txtRecherche_TextChanged);
+            // 
             // frmPatient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -265,6 +279,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(230, 240, 255); // bleu clair
             this.ClientSize = new System.Drawing.Size(1000, 600);
             this.ControlBox = false;
+            this.Controls.Add(this.txtRecherche);
             this.Controls.Add(this.panelMain);
             this.Name = "frmPatient";
             this.Text = "Patient";
@@ -300,5 +315,6 @@
         private System.Windows.Forms.PictureBox picPatient;
         private System.Windows.Forms.Label labelErreur;
         private System.Windows.Forms.Timer refreshTimer;
+        private System.Windows.Forms.TextBox txtRecherche;
     }
 }
