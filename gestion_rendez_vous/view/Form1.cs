@@ -66,7 +66,7 @@ namespace gestion_rendez_vous
         {
             // Test log et envoi email si tu veux garder
             Utils.WriteLogSystem("test", "ceci est un test");
-            GMailer.senMail("falllama660@gmail.com", "test", "un test");
+            GMailer.senMail("bagueye905@gmail.com", "test", "un test");
         }
     }
 }

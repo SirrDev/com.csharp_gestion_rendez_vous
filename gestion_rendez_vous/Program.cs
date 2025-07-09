@@ -51,7 +51,7 @@ namespace gestion_rendez_vous
                     Tel = "tel-Admin",
                     Motdepasse = Helper.CryptString.GetMd5Hash("Passer1234"),
                     NomPrenom = "Nom-Prenom",
-                    Email = "l3gl@yopmail.com",
+                    Email = "l3gl@gmail.com",
                     IdRole = roleAdmin.Id
                 };
 
