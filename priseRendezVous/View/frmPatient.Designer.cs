@@ -45,21 +45,26 @@
             this.bntModifier = new System.Windows.Forms.Button();
             this.btnSupprimer = new System.Windows.Forms.Button();
             this.btnChoisir = new System.Windows.Forms.Button();
+            this.panelMain = new System.Windows.Forms.Panel();
+            this.picPatient = new System.Windows.Forms.PictureBox();
+            this.labelErreur = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgPatient)).BeginInit();
+            this.panelMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picPatient)).BeginInit();
             this.SuspendLayout();
             // 
             // dgPatient
             // 
             this.dgPatient.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgPatient.Location = new System.Drawing.Point(299, 79);
+            this.dgPatient.Location = new System.Drawing.Point(350, 30);
             this.dgPatient.Name = "dgPatient";
-            this.dgPatient.Size = new System.Drawing.Size(548, 337);
+            this.dgPatient.Size = new System.Drawing.Size(570, 480);
             this.dgPatient.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(26, 52);
+            this.label1.Location = new System.Drawing.Point(30, 70);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(80, 13);
             this.label1.TabIndex = 1;
@@ -67,7 +72,7 @@
             // 
             // txtNomPrenom
             // 
-            this.txtNomPrenom.Location = new System.Drawing.Point(29, 68);
+            this.txtNomPrenom.Location = new System.Drawing.Point(30, 90);
             this.txtNomPrenom.Multiline = true;
             this.txtNomPrenom.Name = "txtNomPrenom";
             this.txtNomPrenom.Size = new System.Drawing.Size(249, 26);
@@ -75,7 +80,7 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(29, 174);
+            this.txtEmail.Location = new System.Drawing.Point(30, 150);
             this.txtEmail.Multiline = true;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(249, 24);
@@ -84,7 +89,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(26, 158);
+            this.label2.Location = new System.Drawing.Point(30, 130);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(32, 13);
             this.label2.TabIndex = 3;
@@ -92,7 +97,7 @@
             // 
             // txtTel
             // 
-            this.txtTel.Location = new System.Drawing.Point(29, 227);
+            this.txtTel.Location = new System.Drawing.Point(30, 270);
             this.txtTel.Multiline = true;
             this.txtTel.Name = "txtTel";
             this.txtTel.Size = new System.Drawing.Size(249, 27);
@@ -101,7 +106,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(26, 211);
+            this.label3.Location = new System.Drawing.Point(30, 250);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(58, 13);
             this.label3.TabIndex = 5;
@@ -109,7 +114,7 @@
             // 
             // txtGroupSanguin
             // 
-            this.txtGroupSanguin.Location = new System.Drawing.Point(29, 280);
+            this.txtGroupSanguin.Location = new System.Drawing.Point(30, 330);
             this.txtGroupSanguin.Multiline = true;
             this.txtGroupSanguin.Name = "txtGroupSanguin";
             this.txtGroupSanguin.Size = new System.Drawing.Size(249, 27);
@@ -118,7 +123,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(26, 264);
+            this.label4.Location = new System.Drawing.Point(30, 310);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(84, 13);
             this.label4.TabIndex = 7;
@@ -126,7 +131,7 @@
             // 
             // txtPoids
             // 
-            this.txtPoids.Location = new System.Drawing.Point(29, 333);
+            this.txtPoids.Location = new System.Drawing.Point(30, 390);
             this.txtPoids.Multiline = true;
             this.txtPoids.Name = "txtPoids";
             this.txtPoids.Size = new System.Drawing.Size(249, 27);
@@ -135,7 +140,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(26, 317);
+            this.label5.Location = new System.Drawing.Point(30, 370);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(33, 13);
             this.label5.TabIndex = 9;
@@ -143,7 +148,7 @@
             // 
             // txtAdresse
             // 
-            this.txtAdresse.Location = new System.Drawing.Point(29, 121);
+            this.txtAdresse.Location = new System.Drawing.Point(30, 210);
             this.txtAdresse.Multiline = true;
             this.txtAdresse.Name = "txtAdresse";
             this.txtAdresse.Size = new System.Drawing.Size(249, 24);
@@ -152,7 +157,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(26, 105);
+            this.label6.Location = new System.Drawing.Point(30, 190);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(45, 13);
             this.label6.TabIndex = 11;
@@ -162,9 +167,9 @@
             // 
             this.btnAjouter.BackColor = System.Drawing.Color.SlateGray;
             this.btnAjouter.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnAjouter.Location = new System.Drawing.Point(29, 378);
+            this.btnAjouter.Location = new System.Drawing.Point(30, 470);
             this.btnAjouter.Name = "btnAjouter";
-            this.btnAjouter.Size = new System.Drawing.Size(81, 27);
+            this.btnAjouter.Size = new System.Drawing.Size(120, 35);
             this.btnAjouter.TabIndex = 7;
             this.btnAjouter.Text = "Ajouter";
             this.btnAjouter.UseVisualStyleBackColor = false;
@@ -174,9 +179,9 @@
             // 
             this.bntModifier.BackColor = System.Drawing.SystemColors.Highlight;
             this.bntModifier.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.bntModifier.Location = new System.Drawing.Point(113, 378);
+            this.bntModifier.Location = new System.Drawing.Point(160, 470);
             this.bntModifier.Name = "bntModifier";
-            this.bntModifier.Size = new System.Drawing.Size(81, 27);
+            this.bntModifier.Size = new System.Drawing.Size(120, 35);
             this.bntModifier.TabIndex = 9;
             this.bntModifier.Text = "Modifier";
             this.bntModifier.UseVisualStyleBackColor = false;
@@ -186,9 +191,9 @@
             // 
             this.btnSupprimer.BackColor = System.Drawing.Color.IndianRed;
             this.btnSupprimer.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnSupprimer.Location = new System.Drawing.Point(197, 378);
+            this.btnSupprimer.Location = new System.Drawing.Point(30, 515);
             this.btnSupprimer.Name = "btnSupprimer";
-            this.btnSupprimer.Size = new System.Drawing.Size(81, 27);
+            this.btnSupprimer.Size = new System.Drawing.Size(120, 35);
             this.btnSupprimer.TabIndex = 10;
             this.btnSupprimer.Text = "Supprimer";
             this.btnSupprimer.UseVisualStyleBackColor = false;
@@ -198,43 +203,71 @@
             // 
             this.btnChoisir.BackColor = System.Drawing.Color.SlateGray;
             this.btnChoisir.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnChoisir.Location = new System.Drawing.Point(299, 35);
+            this.btnChoisir.Location = new System.Drawing.Point(160, 515);
             this.btnChoisir.Name = "btnChoisir";
-            this.btnChoisir.Size = new System.Drawing.Size(81, 27);
+            this.btnChoisir.Size = new System.Drawing.Size(120, 35);
             this.btnChoisir.TabIndex = 8;
             this.btnChoisir.Text = "Choisir";
             this.btnChoisir.UseVisualStyleBackColor = false;
             this.btnChoisir.Click += new System.EventHandler(this.btnChoisir_Click);
             // 
+            // panelMain
+            // 
+            this.panelMain.BackColor = System.Drawing.Color.White;
+            this.panelMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelMain.Location = new System.Drawing.Point(25, 25);
+            this.panelMain.Size = new System.Drawing.Size(950, 540);
+            this.panelMain.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panelMain.Controls.Add(this.picPatient);
+            this.panelMain.Controls.Add(this.label1);
+            this.panelMain.Controls.Add(this.txtNomPrenom);
+            this.panelMain.Controls.Add(this.label2);
+            this.panelMain.Controls.Add(this.txtEmail);
+            this.panelMain.Controls.Add(this.label6);
+            this.panelMain.Controls.Add(this.txtAdresse);
+            this.panelMain.Controls.Add(this.label3);
+            this.panelMain.Controls.Add(this.txtTel);
+            this.panelMain.Controls.Add(this.label4);
+            this.panelMain.Controls.Add(this.txtGroupSanguin);
+            this.panelMain.Controls.Add(this.label5);
+            this.panelMain.Controls.Add(this.txtPoids);
+            this.panelMain.Controls.Add(this.btnAjouter);
+            this.panelMain.Controls.Add(this.bntModifier);
+            this.panelMain.Controls.Add(this.btnSupprimer);
+            this.panelMain.Controls.Add(this.btnChoisir);
+            this.panelMain.Controls.Add(this.labelErreur);
+            this.panelMain.Controls.Add(this.dgPatient);
+            // 
+            // picPatient
+            // 
+            this.picPatient.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picPatient.Size = new System.Drawing.Size(80, 80);
+            this.picPatient.Location = new System.Drawing.Point(60, 10);
+            // 
+            // labelErreur
+            // 
+            this.labelErreur.Text = "";
+            this.labelErreur.ForeColor = System.Drawing.Color.Red;
+            this.labelErreur.Location = new System.Drawing.Point(30, 430);
+            this.labelErreur.Size = new System.Drawing.Size(250, 30);
+            this.labelErreur.Visible = false;
+            // 
             // frmPatient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(844, 428);
+            this.BackColor = System.Drawing.Color.FromArgb(230, 240, 255); // bleu clair
+            this.ClientSize = new System.Drawing.Size(1000, 600);
             this.ControlBox = false;
-            this.Controls.Add(this.btnChoisir);
-            this.Controls.Add(this.btnSupprimer);
-            this.Controls.Add(this.bntModifier);
-            this.Controls.Add(this.btnAjouter);
-            this.Controls.Add(this.txtAdresse);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.txtPoids);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtGroupSanguin);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.txtTel);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtEmail);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtNomPrenom);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.dgPatient);
+            this.Controls.Add(this.panelMain);
             this.Name = "frmPatient";
             this.Text = "Patient";
             this.Load += new System.EventHandler(this.frmPatient_Load_1);
+            this.panelMain.ResumeLayout(false);
+            this.panelMain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picPatient)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgPatient)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -257,5 +290,8 @@
         private System.Windows.Forms.Button bntModifier;
         private System.Windows.Forms.Button btnSupprimer;
         private System.Windows.Forms.Button btnChoisir;
+        private System.Windows.Forms.Panel panelMain;
+        private System.Windows.Forms.PictureBox picPatient;
+        private System.Windows.Forms.Label labelErreur;
     }
 }

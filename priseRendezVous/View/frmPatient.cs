@@ -7,6 +7,8 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Windows.Forms;
+using System.Net;
+using System.Drawing;
 
 namespace priseRendezVous.View
 {
@@ -30,9 +32,22 @@ namespace priseRendezVous.View
             this.Load += new EventHandler(frmPatient_Load);
         }
 
-        private async void frmPatient_Load(object sender, EventArgs e)
+        private void frmPatient_Load(object sender, EventArgs e)
         {
-            await LoadPatients();
+            // Icône patient en ligne (Icons8)
+            string urlPatientPng = "https://img.icons8.com/ios-filled/100/000000/user.png";
+            picPatient.Image = LoadImageFromUrl(urlPatientPng);
+        }
+
+        private System.Drawing.Image LoadImageFromUrl(string url)
+        {
+            using (var wc = new WebClient())
+            {
+                using (var s = new System.IO.MemoryStream(wc.DownloadData(url)))
+                {
+                    return System.Drawing.Image.FromStream(s);
+                }
+            }
         }
 
         private async System.Threading.Tasks.Task LoadPatients()
@@ -46,7 +61,8 @@ namespace priseRendezVous.View
             }
             else
             {
-                MessageBox.Show("Erreur lors du chargement des patients");
+                labelErreur.Text = "Erreur lors du chargement des patients";
+                labelErreur.Visible = true;
             }
         }
 
@@ -58,45 +74,54 @@ namespace priseRendezVous.View
             txtTel.Text = "";
             txtGroupSanguin.Text = "";
             txtPoids.Text = "";
+            labelErreur.Visible = false;
         }
 
         private async void btnAjouter_Click(object sender, EventArgs e)
         {
-            var patient = new Patient
-            {
-                NomPrenom = txtNomPrenom.Text,
-                Adresse = txtAdresse.Text,
-                Tel = txtTel.Text,
-                Email = txtEmail.Text,
-                GroupeSanguin = txtGroupSanguin.Text,
-                Poids = float.Parse(txtPoids.Text)
-            };
-
-            try { 
+            labelErreur.Visible = false;
+            try {
+                if (!float.TryParse(txtPoids.Text, out float poids))
+                {
+                    labelErreur.Text = "Le poids doit être un nombre valide.";
+                    labelErreur.ForeColor = System.Drawing.Color.Red;
+                    labelErreur.Visible = true;
+                    return;
+                }
+                var patient = new Patient
+                {
+                    NomPrenom = txtNomPrenom.Text,
+                    Adresse = txtAdresse.Text,
+                    Tel = txtTel.Text,
+                    Email = txtEmail.Text,
+                    GroupeSanguin = txtGroupSanguin.Text,
+                    Poids = poids
+                };
                 var json = JsonConvert.SerializeObject(patient);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
-
                 var response = await client.PostAsync(baseUrl, content);
-
                 if (response.IsSuccessStatusCode)
                 {
-                    MessageBox.Show("Patient ajouté !");
                     await LoadPatients();
                     ResetForm();
+                    labelErreur.Text = "Patient ajouté !";
+                    labelErreur.ForeColor = System.Drawing.Color.Green;
+                    labelErreur.Visible = true;
                 }
                 else
                 {
                     string errorContent = await response.Content.ReadAsStringAsync();
-                    MessageBox.Show("Erreur HTTP: " + response.StatusCode + "\n" + errorContent);
+                    labelErreur.Text = "Erreur HTTP: " + response.StatusCode + "\n" + errorContent;
+                    labelErreur.ForeColor = System.Drawing.Color.Red;
+                    labelErreur.Visible = true;
                 }
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erreur de l'ajout : " + ex.Message);
+                labelErreur.Text = "Erreur de l'ajout : " + ex.Message;
+                labelErreur.ForeColor = System.Drawing.Color.Red;
+                labelErreur.Visible = true;
             }
-
-          
         }
 
         private void btnChoisir_Click(object sender, EventArgs e)
@@ -115,17 +140,22 @@ namespace priseRendezVous.View
         private async void bntModifier_Click(object sender, EventArgs e)
         {
             if (dgPatient.CurrentRow == null) return;
-
+            if (!float.TryParse(txtPoids.Text, out float poids))
+            {
+                labelErreur.Text = "Le poids doit être un nombre valide.";
+                labelErreur.ForeColor = System.Drawing.Color.Red;
+                labelErreur.Visible = true;
+                return;
+            }
             int id = (int)dgPatient.CurrentRow.Cells["idU"].Value;
             var patient = new Patient
             {
-                //idU = id,
                 NomPrenom = txtNomPrenom.Text,
                 Adresse = txtAdresse.Text,
                 Tel = txtTel.Text,
                 Email = txtEmail.Text,
                 GroupeSanguin = txtGroupSanguin.Text,
-                Poids = float.Parse(txtPoids.Text)
+                Poids = poids
             };
 
             var json = JsonConvert.SerializeObject(patient);
@@ -168,6 +198,20 @@ namespace priseRendezVous.View
         private void frmPatient_Load_1(object sender, EventArgs e)
         {
 
+        }
+
+        // Exemple d'affichage d'une erreur moderne
+        private void ShowError(string message)
+        {
+            labelErreur.Text = message;
+            labelErreur.ForeColor = System.Drawing.Color.Red;
+            labelErreur.Visible = true;
+        }
+        private void ShowSuccess(string message)
+        {
+            labelErreur.Text = message;
+            labelErreur.ForeColor = System.Drawing.Color.Green;
+            labelErreur.Visible = true;
         }
     }
 }

@@ -19,7 +19,7 @@ namespace APIRvMedical.Controllers
             //        {
             //            var admin = new Admin
             //            {
-            //                Adresse = "ligne",
+            //                Adresse = "Dakar",
             //                Email = "admin@gmail.com",
             //                NomPrenom = "Admin",
             //                Identifiant = "admin@gmail.com",

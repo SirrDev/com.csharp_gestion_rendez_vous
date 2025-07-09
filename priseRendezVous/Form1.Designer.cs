@@ -28,112 +28,132 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBoxIdentifiant = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBoxMotDePasse = new System.Windows.Forms.TextBox();
-            this.btnSeconnecter = new System.Windows.Forms.Button();
-            this.btnFermer = new System.Windows.Forms.Button();
+            this.panelLogin = new System.Windows.Forms.Panel();
+            this.picIcon = new System.Windows.Forms.PictureBox();
+            this.picUser = new System.Windows.Forms.PictureBox();
+            this.picPwd = new System.Windows.Forms.PictureBox();
+            this.txtUser = new System.Windows.Forms.TextBox();
+            this.txtPwd = new System.Windows.Forms.TextBox();
+            this.chkShowPwd = new System.Windows.Forms.CheckBox();
+            this.labelErreur = new System.Windows.Forms.Label();
+            this.btnLogin = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.panelLogin.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picIcon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picUser)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPwd)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // panelLogin
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(119, 36);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(176, 25);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Authentification";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.panelLogin.BackColor = System.Drawing.Color.White;
+            this.panelLogin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelLogin.Location = new System.Drawing.Point(60, 40);
+            this.panelLogin.Size = new System.Drawing.Size(350, 400);
+            this.panelLogin.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panelLogin.Controls.Add(this.picIcon);
+            this.panelLogin.Controls.Add(this.picUser);
+            this.panelLogin.Controls.Add(this.txtUser);
+            this.panelLogin.Controls.Add(this.picPwd);
+            this.panelLogin.Controls.Add(this.txtPwd);
+            this.panelLogin.Controls.Add(this.chkShowPwd);
+            this.panelLogin.Controls.Add(this.labelErreur);
+            this.panelLogin.Controls.Add(this.btnLogin);
+            this.panelLogin.Controls.Add(this.btnClose);
             // 
-            // textBoxIdentifiant
+            // picIcon
             // 
-            this.textBoxIdentifiant.Location = new System.Drawing.Point(97, 117);
-            this.textBoxIdentifiant.Multiline = true;
-            this.textBoxIdentifiant.Name = "textBoxIdentifiant";
-            this.textBoxIdentifiant.Size = new System.Drawing.Size(218, 27);
-            this.textBoxIdentifiant.TabIndex = 1;
+            // this.picIcon.Image = global::priseRendezVous.Properties.Resources.cadenas; // Ajoute cadenas.png dans Resources
+            this.picIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picIcon.Size = new System.Drawing.Size(64, 64);
+            this.picIcon.Location = new System.Drawing.Point(143, 20);
             // 
-            // label2
+            // picUser
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(94, 101);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(84, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Nom d\'utilisateur";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // this.picUser.Image = global::priseRendezVous.Properties.Resources.user; // Ajoute user.png dans Resources
+            this.picUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picUser.Size = new System.Drawing.Size(24, 24);
+            this.picUser.Location = new System.Drawing.Point(30, 100);
             // 
-            // label3
+            // txtUser
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(94, 159);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(71, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Mot de passe";
+            // this.txtUser.PlaceholderText = "Nom d'utilisateur"; // PlaceholderText non supporté en .NET Framework
+            this.txtUser.Location = new System.Drawing.Point(60, 100);
+            this.txtUser.Width = 220;
             // 
-            // textBoxMotDePasse
+            // picPwd
             // 
-            this.textBoxMotDePasse.Location = new System.Drawing.Point(97, 175);
-            this.textBoxMotDePasse.Multiline = true;
-            this.textBoxMotDePasse.Name = "textBoxMotDePasse";
-            this.textBoxMotDePasse.Size = new System.Drawing.Size(218, 28);
-            this.textBoxMotDePasse.TabIndex = 3;
-            this.textBoxMotDePasse.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            // this.picPwd.Image = global::priseRendezVous.Properties.Resources.lock_icon; // Ajoute lock_icon.png dans Resources
+            this.picPwd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picPwd.Size = new System.Drawing.Size(24, 24);
+            this.picPwd.Location = new System.Drawing.Point(30, 150);
             // 
-            // btnSeconnecter
+            // txtPwd
             // 
-            this.btnSeconnecter.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnSeconnecter.Location = new System.Drawing.Point(97, 227);
-            this.btnSeconnecter.Name = "btnSeconnecter";
-            this.btnSeconnecter.Size = new System.Drawing.Size(107, 29);
-            this.btnSeconnecter.TabIndex = 5;
-            this.btnSeconnecter.Text = "Se connecter";
-            this.btnSeconnecter.UseVisualStyleBackColor = false;
-            this.btnSeconnecter.Click += new System.EventHandler(this.button1_Click);
+            // this.txtPwd.PlaceholderText = "Mot de passe"; // PlaceholderText non supporté en .NET Framework
+            this.txtPwd.Location = new System.Drawing.Point(60, 150);
+            this.txtPwd.Width = 220;
+            this.txtPwd.PasswordChar = '*';
             // 
-            // btnFermer
+            // chkShowPwd
             // 
-            this.btnFermer.Location = new System.Drawing.Point(225, 227);
-            this.btnFermer.Name = "btnFermer";
-            this.btnFermer.Size = new System.Drawing.Size(90, 29);
-            this.btnFermer.TabIndex = 6;
-            this.btnFermer.Text = "Fermer";
-            this.btnFermer.UseVisualStyleBackColor = true;
-            this.btnFermer.Click += new System.EventHandler(this.btnFermer_Click);
+            this.chkShowPwd.Text = "Afficher le mot de passe";
+            this.chkShowPwd.Location = new System.Drawing.Point(60, 180);
+            this.chkShowPwd.CheckedChanged += new System.EventHandler(this.chkShowPwd_CheckedChanged);
+            // 
+            // labelErreur
+            // 
+            this.labelErreur.Text = "";
+            this.labelErreur.ForeColor = System.Drawing.Color.Red;
+            this.labelErreur.Location = new System.Drawing.Point(60, 210);
+            this.labelErreur.Size = new System.Drawing.Size(220, 20);
+            this.labelErreur.Visible = false;
+            // 
+            // btnLogin
+            // 
+            this.btnLogin.Text = "Se connecter";
+            this.btnLogin.BackColor = System.Drawing.Color.FromArgb(0, 120, 215);
+            this.btnLogin.ForeColor = System.Drawing.Color.White;
+            this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogin.Location = new System.Drawing.Point(60, 250);
+            this.btnLogin.Size = new System.Drawing.Size(100, 35);
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Text = "Fermer";
+            this.btnClose.Location = new System.Drawing.Point(180, 250);
+            this.btnClose.Size = new System.Drawing.Size(100, 35);
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(451, 422);
-            this.Controls.Add(this.btnFermer);
-            this.Controls.Add(this.btnSeconnecter);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBoxMotDePasse);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBoxIdentifiant);
-            this.Controls.Add(this.label1);
+            this.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.ClientSize = new System.Drawing.Size(470, 480);
+            this.Controls.Add(this.panelLogin);
             this.Name = "Form1";
             this.Text = "Authentification";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.panelLogin.ResumeLayout(false);
+            this.panelLogin.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picIcon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picUser)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPwd)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBoxIdentifiant;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBoxMotDePasse;
-        private System.Windows.Forms.Button btnSeconnecter;
-        private System.Windows.Forms.Button btnFermer;
+        private System.Windows.Forms.Panel panelLogin;
+        private System.Windows.Forms.PictureBox picIcon;
+        private System.Windows.Forms.PictureBox picUser;
+        private System.Windows.Forms.PictureBox picPwd;
+        private System.Windows.Forms.TextBox txtUser;
+        private System.Windows.Forms.TextBox txtPwd;
+        private System.Windows.Forms.CheckBox chkShowPwd;
+        private System.Windows.Forms.Label labelErreur;
+        private System.Windows.Forms.Button btnLogin;
+        private System.Windows.Forms.Button btnClose;
     }
 }
 

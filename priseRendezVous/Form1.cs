@@ -12,6 +12,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net;
 
 namespace priseRendezVous
 {
@@ -20,7 +21,9 @@ namespace priseRendezVous
         public Form1()
         {
             InitializeComponent();
-            textBoxMotDePasse.PasswordChar = '*';
+            txtPwd.PasswordChar = '*';
+            chkShowPwd.CheckedChanged += chkShowPwd_CheckedChanged;
+            this.Load += Form1_Load;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -33,22 +36,27 @@ namespace priseRendezVous
 
         }
 
+        private void chkShowPwd_CheckedChanged(object sender, EventArgs e)
+        {
+            txtPwd.PasswordChar = chkShowPwd.Checked ? '\0' : '*';
+        }
+
         /// <summary>
         /// Bouton pour se connecter
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void button1_Click(object sender, EventArgs e)
+        private async void btnLogin_Click(object sender, EventArgs e)
         {
-            string identifiant = textBoxIdentifiant.Text.Trim();
-            string motDePasse = textBoxMotDePasse.Text;
-
+            string identifiant = txtUser.Text.Trim();
+            string motDePasse = txtPwd.Text;
+            labelErreur.Visible = false;
             if (string.IsNullOrEmpty(identifiant) || string.IsNullOrEmpty(motDePasse))
             {
-                MessageBox.Show("Veuillez saisir l'identifiant et le mot de passe", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                labelErreur.Text = "Veuillez saisir l'identifiant et le mot de passe";
+                labelErreur.Visible = true;
                 return;
             }
-
             try
             {
                 var utilisateur = await AuthentifierUtilisateurAsync(identifiant, motDePasse);
@@ -59,12 +67,14 @@ namespace priseRendezVous
                 }
                 else
                 {
-                    MessageBox.Show("Identifiant ou mot de passe incorrect", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    labelErreur.Text = "Identifiant ou mot de passe incorrect";
+                    labelErreur.Visible = true;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erreur lors de la connexion : {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                labelErreur.Text = $"Erreur lors de la connexion : {ex.Message}";
+                labelErreur.Visible = true;
             }
         }
 
@@ -99,7 +109,7 @@ namespace priseRendezVous
         }
 
 
-        private void btnFermer_Click(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -111,7 +121,24 @@ namespace priseRendezVous
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // Liens PNG libres de droits (Icons8)
+            string urlUserPng = "https://img.icons8.com/ios-filled/50/000000/user.png";
+            string urlLockPng = "https://img.icons8.com/ios-filled/50/000000/lock-2.png";
 
+            picUser.Image = LoadImageFromUrl(urlUserPng);
+            picPwd.Image = LoadImageFromUrl(urlLockPng);
+            picIcon.Image = LoadImageFromUrl(urlLockPng);
+        }
+
+        private Image LoadImageFromUrl(string url)
+        {
+            using (WebClient wc = new WebClient())
+            {
+                using (var stream = new System.IO.MemoryStream(wc.DownloadData(url)))
+                {
+                    return Image.FromStream(stream);
+                }
+            }
         }
 
 
