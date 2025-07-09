@@ -30,6 +30,13 @@ namespace priseRendezVous.View
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             this.Load += new EventHandler(frmPatient_Load);
+            // Démarrer le timer pour l'actualisation automatique
+            this.Load += (s, e) => { refreshTimer.Start(); };
+        }
+
+        private async void refreshTimer_Tick(object sender, EventArgs e)
+        {
+            await LoadPatients();
         }
 
         private void frmPatient_Load(object sender, EventArgs e)
@@ -37,6 +44,8 @@ namespace priseRendezVous.View
             // Icône patient en ligne (Icons8)
             string urlPatientPng = "https://img.icons8.com/ios-filled/100/000000/user.png";
             picPatient.Image = LoadImageFromUrl(urlPatientPng);
+            // Appeler LoadPatients lors du chargement initial
+            LoadPatients();
         }
 
         private System.Drawing.Image LoadImageFromUrl(string url)

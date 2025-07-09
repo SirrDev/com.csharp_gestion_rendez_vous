@@ -48,6 +48,7 @@
             this.panelMain = new System.Windows.Forms.Panel();
             this.picPatient = new System.Windows.Forms.PictureBox();
             this.labelErreur = new System.Windows.Forms.Label();
+            this.refreshTimer = new System.Windows.Forms.Timer();
             ((System.ComponentModel.ISupportInitialize)(this.dgPatient)).BeginInit();
             this.panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picPatient)).BeginInit();
@@ -252,6 +253,11 @@
             this.labelErreur.Size = new System.Drawing.Size(250, 30);
             this.labelErreur.Visible = false;
             // 
+            // refreshTimer
+            // 
+            this.refreshTimer.Interval = 10000; // 10 secondes
+            this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
+            // 
             // frmPatient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -293,5 +299,6 @@
         private System.Windows.Forms.Panel panelMain;
         private System.Windows.Forms.PictureBox picPatient;
         private System.Windows.Forms.Label labelErreur;
+        private System.Windows.Forms.Timer refreshTimer;
     }
 }
